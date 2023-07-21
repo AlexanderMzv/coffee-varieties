@@ -1,8 +1,10 @@
 <script lang="ts">
+  import svelteLogo from "./assets/svelte.svg";
   export let name: string;
 </script>
 
 <main>
+  <img src={svelteLogo} alt="Svelte Logo" />
   <h1>Hello {name}!</h1>
   <p>
     Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn

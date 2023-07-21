@@ -2,8 +2,14 @@
   "extends": "@tsconfig/svelte/tsconfig.json",
   "compilerOptions": {
     "target": "ESNext",
-    "types": ["node", "svelte"]
+    "types": ["node", "svelte"],
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": true,
+    "isolatedModules": true
   },
   "include": ["src/**/*", "src/node_modules/**/*"],
-  "exclude": ["node_modules/*", "__sapper__/*", "static/*"]
+  "exclude": ["node_modules/*", "__sapper__/*", "static/*", "webpack.config.js"]
 }
