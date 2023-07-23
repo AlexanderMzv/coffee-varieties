@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import type { CoffeeCard } from "../types";
-  import { fetchCard } from "../../api/fetchCard";
+  import { fetchCard } from "../api/fetchCard";
   import CardsList from "../../lib/components/CardsList.svelte";
   import AddButton from "../../lib/components/AddButton.svelte";
 

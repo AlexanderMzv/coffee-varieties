@@ -1,7 +1,7 @@
 import { endpoints } from "./endpoints";
 import type { CoffeeCardDTO } from "./types";
 import { mapCardData } from "./mappers";
-import type { CoffeeCard } from "../lib/types";
+import type { CoffeeCard } from "../types";
 
 export const fetchCard = async (): Promise<CoffeeCard> => {
   const response = await fetch(endpoints.coffeeCard);
