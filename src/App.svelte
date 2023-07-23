@@ -9,7 +9,7 @@
 </main>
 
 <style lang="less">
-  @mobile-screen-size: 600px;
+  @import (reference) "./styles/global.less";
 
   main {
     display: flex;

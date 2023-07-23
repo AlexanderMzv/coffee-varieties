@@ -12,8 +12,7 @@
 </div>
 
 <style lang="less">
-  @mobile-screen-size: 600px;
-  // todo вынести переменную наверх
+  @import (reference) "../../styles/global.less";
 
   .card-list {
     display: flex;

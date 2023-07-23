@@ -30,8 +30,7 @@
 </div>
 
 <style lang="less">
-  @mobile-screen-size: 600px;
-  // todo вынести переменную наверх
+  @import (reference) "../../styles/global.less";
 
   .list-screen {
     display: flex;
