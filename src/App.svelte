@@ -1,8 +1,9 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import Card from "./lib/components/Card.svelte";
   import type { CoffeeCard } from "./lib/types";
   import { fetchCard } from "./api/fetchCard";
+  import CardsList from "./lib/components/CardsList.svelte";
+  import AddButton from "./lib/components/AddButton.svelte";
 
   let cardsData: CoffeeCard[] = [];
 
@@ -25,13 +26,9 @@
   <div class="layout">
     <div class="list-screen">
       {#if !!cardsData.length}
-        <div class="card-list">
-          {#each cardsData as card}
-            <Card {card} />
-          {/each}
-        </div>
+        <CardsList {cardsData} />
       {/if}
-      <button class="add-button" on:click={handleClick}>+</button>
+      <AddButton {handleClick} />
     </div>
   </div>
 </main>
@@ -67,36 +64,5 @@
     .list-screen {
       gap: 20px;
     }
-  }
-
-  .card-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  @media (max-width: @mobile-screen-size) {
-    .card-list {
-      gap: 10px;
-    }
-  }
-
-  .add-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;
-    height: 80px;
-
-    border-radius: 50%;
-    border: none;
-    font-size: 40px;
-    background-color: #0c0c0e;
-    color: #ececec;
-  }
-
-  .add-button:hover {
-    color: #909090;
   }
 </style>
