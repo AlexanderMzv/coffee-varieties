@@ -1,37 +1,68 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import placeholder from "./assets/placeholder.svg";
+
+  interface CoffeeCardDTO {
+    id: number;
+    uid: string;
+    blend_name: string;
+    origin: string;
+    variety: string;
+    notes: string;
+    intensifier: string;
+  }
+
+  interface CoffeeCard extends Omit<CoffeeCardDTO, "notes"> {
+    notes: string[];
+  }
+
+  const mapCardData = (card: CoffeeCardDTO): CoffeeCard => {
+    return { ...card, notes: card.notes.split(", ") };
+  };
+
+  let cardsData: CoffeeCard[] = [];
+
+  const fetchCard = async () => {
+    const response = await fetch(
+      "https://random-data-api.com/api/coffee/random_coffee",
+    );
+    if (response.ok) {
+      const cardData = (await response.json()) as CoffeeCardDTO;
+      const mappedCardData = mapCardData(cardData);
+
+      cardsData = [...cardsData, mappedCardData];
+    } else {
+      console.error("Error loading data with status: ", response.status);
+    }
+  };
+
+  onMount(() => {
+    void fetchCard();
+  });
+
+  const handleClick = () => {
+    void fetchCard();
+  };
 </script>
 
 <main>
   <div class="layout">
     <div class="list-screen">
-      <div class="card-list">
-        <div class="card">
-          <img class="image" src={placeholder} alt="card" />
-          <div class="description">
-            <div class="origin">Guanacaste, Costa Rica</div>
-            <div class="blend-name">Hello Bean</div>
-            <div class="variety">Kaffa</div>
-          </div>
+      {#if !!cardsData.length}
+        <div class="card-list">
+          {#each cardsData as card}
+            <div class="card">
+              <img class="image" src={placeholder} alt="card" />
+              <div class="description">
+                <div class="origin">{card.origin}</div>
+                <div class="blend-name">{card.blend_name}</div>
+                <div class="variety">{card.variety}</div>
+              </div>
+            </div>
+          {/each}
         </div>
-        <!--        <div class="card">-->
-        <!--          <img class="image" src={placeholder} alt="card" />-->
-        <!--          <div class="description">-->
-        <!--            <div class="origin">Guanacaste, Costa Rica</div>-->
-        <!--            <div class="blend-name">Hello Bean</div>-->
-        <!--            <div class="variety">Kaffa</div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-        <!--        <div class="card">-->
-        <!--          <img class="image" src={placeholder} alt="card" />-->
-        <!--          <div class="description">-->
-        <!--            <div class="origin">Guanacaste, Costa Rica</div>-->
-        <!--            <div class="blend-name">Hello Bean</div>-->
-        <!--            <div class="variety">Kaffa</div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-      </div>
-      <button class="add-button">+</button>
+      {/if}
+      <button class="add-button" on:click={handleClick}>+</button>
     </div>
   </div>
 </main>
@@ -141,5 +172,9 @@
     font-size: 40px;
     background-color: #0c0c0e;
     color: #ececec;
+  }
+
+  .add-button:hover {
+    color: #909090;
   }
 </style>
