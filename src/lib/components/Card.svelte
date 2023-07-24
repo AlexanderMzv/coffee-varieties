@@ -2,13 +2,39 @@
   import type { CoffeeCard } from "../types";
   import placeholder from "../../assets/placeholder.svg";
   import ChipsList from "./ChipsList.svelte";
+  import { onMount, onDestroy, getContext } from "svelte";
+  import { fetchCardImage } from "../api/fetchCardImage";
+  import { UPDATE_IMAGE_LOADING_CONTEXT } from "../consts";
+  import type { ImageLoadingContext } from "../types";
 
   export let card: CoffeeCard;
+
+  let imageUrl: string;
+
+  const { updateImageLoading } = getContext<ImageLoadingContext>(
+    UPDATE_IMAGE_LOADING_CONTEXT,
+  );
+
+  const getImage = async () => {
+    updateImageLoading(true);
+    imageUrl = await fetchCardImage();
+    updateImageLoading(false);
+  };
+
+  onMount(() => {
+    void getImage();
+  });
+
+  onDestroy(() => {
+    if (imageUrl) {
+      URL.revokeObjectURL(imageUrl);
+    }
+  });
 </script>
 
 <div class="card">
   <div class="intensifier">{card.intensifier}</div>
-  <img class="image" src={placeholder} alt="card" />
+  <img class="image" src={imageUrl ? imageUrl : placeholder} alt="card" />
   <div class="description">
     <div class="origin">{card.origin}</div>
     <div class="blend-name">{card.blend_name}</div>

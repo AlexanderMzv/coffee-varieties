@@ -36,6 +36,9 @@
   .add-button:disabled {
     pointer-events: none;
   }
+  .add-button:active {
+    color: #ececec;
+  }
 
   .loading {
     background-color: #58585c;

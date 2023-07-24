@@ -1,27 +1,40 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount, setContext } from "svelte";
   import type { CoffeeCard } from "../types";
   import { fetchCard } from "../api/fetchCard";
   import CardsList from "../../lib/components/CardsList.svelte";
   import AddButton from "../../lib/components/AddButton.svelte";
+  import { UPDATE_IMAGE_LOADING_CONTEXT } from "../consts";
+  import type { ImageLoadingContext } from "../types";
 
   let cardsData: CoffeeCard[] = [];
-  let isLoading = false;
+
+  let isCardDataLoading = false;
+  let isImageLoading = false;
+  $: isLoading = isCardDataLoading || isImageLoading;
+
+  const updateImageLoading = (isLoadingValue: boolean) => {
+    isImageLoading = isLoadingValue;
+  };
+
+  setContext<ImageLoadingContext>(UPDATE_IMAGE_LOADING_CONTEXT, {
+    updateImageLoading,
+  });
 
   const getCard = async () => {
-    isLoading = true;
+    isCardDataLoading = true;
     const cardData = await fetchCard();
-    isLoading = false;
+    isCardDataLoading = false;
     cardsData = [...cardsData, cardData] as CoffeeCard[];
+  };
+
+  const handleClick = () => {
+    void getCard();
   };
 
   onMount(() => {
     void getCard();
   });
-
-  const handleClick = () => {
-    void getCard();
-  };
 </script>
 
 <div class="list-screen">
