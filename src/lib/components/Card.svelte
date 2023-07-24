@@ -1,16 +1,19 @@
 <script lang="ts">
   import type { CoffeeCard } from "../types";
   import placeholder from "../../assets/placeholder.svg";
+  import ChipsList from "./ChipsList.svelte";
 
   export let card: CoffeeCard;
 </script>
 
 <div class="card">
+  <div class="intensifier">{card.intensifier}</div>
   <img class="image" src={placeholder} alt="card" />
   <div class="description">
     <div class="origin">{card.origin}</div>
     <div class="blend-name">{card.blend_name}</div>
     <div class="variety">{card.variety}</div>
+    <ChipsList notes={card.notes} />
   </div>
 </div>
 
@@ -20,8 +23,6 @@
   .card {
     position: relative;
     width: 500px;
-    /* todo временно проставил height, убрать */
-    height: 449px;
     background-color: white;
   }
 
@@ -29,6 +30,17 @@
     .card {
       width: 304px;
     }
+  }
+
+  .intensifier {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+
+    font-size: 32px;
+    color: #ffffff;
+    -webkit-text-stroke: 1px #818182;
+    text-stroke: 1px #818182;
   }
 
   .image {

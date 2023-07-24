@@ -6,10 +6,12 @@
   import AddButton from "../../lib/components/AddButton.svelte";
 
   let cardsData: CoffeeCard[] = [];
+  let isLoading = false;
 
   const getCard = async () => {
+    isLoading = true;
     const cardData = await fetchCard();
-
+    isLoading = false;
     cardsData = [...cardsData, cardData] as CoffeeCard[];
   };
 
@@ -26,7 +28,7 @@
   {#if !!cardsData.length}
     <CardsList {cardsData} />
   {/if}
-  <AddButton {handleClick} />
+  <AddButton {handleClick} {isLoading} />
 </div>
 
 <style lang="less">

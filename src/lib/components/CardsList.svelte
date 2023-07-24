@@ -5,7 +5,7 @@
   export let cardsData: CoffeeCard[];
 </script>
 
-<div class="card-list">
+<div class="cards-list">
   {#each cardsData as card}
     <Card {card} />
   {/each}
@@ -14,7 +14,7 @@
 <style lang="less">
   @import (reference) "../../styles/global.less";
 
-  .card-list {
+  .cards-list {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,7 +22,7 @@
   }
 
   @media (max-width: @mobile-screen-size) {
-    .card-list {
+    .cards-list {
       gap: 10px;
     }
   }
