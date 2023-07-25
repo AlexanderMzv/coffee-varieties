@@ -1,64 +1,29 @@
-# svelte app
+# ☕ coffee-varieties
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template-webpack.
+Задеплоенное приложение [здесь](https://coffee-varieties.vercel.app/).<br />
 
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template-webpack svelte-app
-cd svelte-app
-```
-
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
-
-
-## Get started
-
-Install the dependencies...
+## Как запустить
 
 ```bash
-cd svelte-app
-npm install
+# установка зависимостей
+$ npm install
+
+# запуск в режиме разработки
+$ npm run dev
 ```
 
-...then start webpack:
+## Стек
 
-```bash
-npm run dev
-```
+- [Svelte](https://svelte.dev/)
+- [TypeScript](https://typescriptlang.org)
+- [Webpack](https://webpack.js.org)
+- [Less](https://lesscss.org/)
 
-Navigate to [localhost:8080](http://localhost:8080). You should see your app running. Edit a component file in `src`, save it, and the page should reload with your changes.
+## Доступные скрипты
 
-
-## Deploying to the web
-
-### With [now](https://zeit.co/now)
-
-Install `now` if you haven't already:
-
-```bash
-npm install -g now
-```
-
-Then, from within your project folder:
-
-```bash
-now
-```
-
-As an alternative, use the [Now desktop client](https://zeit.co/download) and simply drag the unzipped project folder to the taskbar icon.
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public
-```
+- `npm run dev` - запуск в режиме разработки
+- `npm run build:dev` - запуск сборки бандла для dev
+- `npm run build:prod` - запуск сборки бандла для prod
+- `npm run validate` - запуск проверки на ошибки для файлов .svelte
+- `npm run format` - запуск prettier
+- `npm run lint` - запуск eslint
