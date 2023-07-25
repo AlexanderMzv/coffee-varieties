@@ -3,7 +3,7 @@
   import placeholder from "../../assets/placeholder.svg";
   import ChipsList from "./ChipsList.svelte";
   import { onMount, onDestroy, getContext } from "svelte";
-  import { fetchCardImage } from "../api/fetchCardImage";
+  import { fetchCardImage } from "../api/utils/fetchCardImage";
   import { UPDATE_IMAGE_LOADING_CONTEXT } from "../consts";
   import type { ImageLoadingContext } from "../types";
 
@@ -32,7 +32,7 @@
   });
 </script>
 
-<div class="card">
+<article class="card">
   <div class="intensifier">{card.intensifier}</div>
   <img class="image" src={imageUrl ? imageUrl : placeholder} alt="card" />
   <div class="description">
@@ -41,7 +41,7 @@
     <div class="variety">{card.variety}</div>
     <ChipsList notes={card.notes} />
   </div>
-</div>
+</article>
 
 <style lang="less">
   @import (reference) "../../styles/global.less";
@@ -49,7 +49,7 @@
   .card {
     position: relative;
     width: 500px;
-    background-color: white;
+    background-color: @white-color;
   }
 
   @media (max-width: @mobile-screen-size) {
@@ -64,16 +64,16 @@
     top: 20px;
 
     font-size: 32px;
-    color: #ffffff;
-    -webkit-text-stroke: 1px #818182;
-    text-stroke: 1px #818182;
+    color: @white-color;
+    -webkit-text-stroke: 1px @gray-text-stroke;
+    text-stroke: 1px @gray-text-stroke;
   }
 
   .image {
     width: 500px;
     height: 242px;
     object-fit: cover;
-    border-bottom: 1px solid #d9d9d9;
+    border-bottom: 1px solid @gray-border;
   }
 
   @media (max-width: @mobile-screen-size) {
@@ -86,7 +86,7 @@
     padding: 24px 0 24px 20px;
 
     .origin {
-      color: #6d6d6d;
+      color: @gray-text;
       margin-bottom: 16px;
     }
 

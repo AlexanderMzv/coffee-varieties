@@ -1,30 +1,19 @@
 <script lang="ts">
   import ListScreen from "./lib/screens/ListScreen.svelte";
+  import Layout from "./lib/components/Layout.svelte";
 </script>
 
 <main>
-  <div class="layout">
+  <Layout>
     <ListScreen />
-  </div>
+  </Layout>
 </main>
 
 <style lang="less">
-  @import (reference) "./styles/global.less";
-
   main {
     display: flex;
     justify-content: center;
     height: 100%;
     overflow-y: auto;
-  }
-
-  .layout {
-    padding: 60px 8px;
-  }
-
-  @media (max-width: @mobile-screen-size) {
-    .layout {
-      padding: 30px 8px;
-    }
   }
 </style>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount, setContext } from "svelte";
   import type { CoffeeCard } from "../types";
-  import { fetchCard } from "../api/fetchCard";
+  import { fetchCard } from "../api/utils/fetchCard";
   import CardsList from "../../lib/components/CardsList.svelte";
   import AddButton from "../../lib/components/AddButton.svelte";
   import { UPDATE_IMAGE_LOADING_CONTEXT } from "../consts";

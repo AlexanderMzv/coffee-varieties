@@ -1,8 +1,9 @@
 <script lang="ts">
   export let note: string;
+  export let color: string;
 </script>
 
-<div class="chip">{note}</div>
+<div class="chip" style="background-color: {color}">{note}</div>
 
 <style lang="less">
   .chip {
@@ -16,8 +17,5 @@
     white-space: nowrap;
     font-size: 20px;
     line-height: 24px;
-
-    // todo сделать разный цвет на каждую
-    background-color: #dee6f1;
   }
 </style>

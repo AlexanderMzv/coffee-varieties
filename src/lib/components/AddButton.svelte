@@ -14,6 +14,8 @@
 </button>
 
 <style lang="less">
+  @import (reference) "../../styles/global.less";
+
   .add-button {
     position: relative;
     display: flex;
@@ -25,23 +27,20 @@
     border-radius: 50%;
     border: none;
     font-size: 40px;
-    background-color: #0c0c0e;
-    color: #ececec;
+    background-color: @black-color;
+    color: @lightgrey-color;
   }
 
   .add-button:hover {
-    color: #909090;
+    color: @grey-color;
   }
 
   .add-button:disabled {
     pointer-events: none;
   }
-  .add-button:active {
-    color: #ececec;
-  }
 
   .loading {
-    background-color: #58585c;
+    background-color: @gray-button-loading;
   }
 
   .button-label {
@@ -56,7 +55,7 @@
     inset: 0;
     margin: auto;
     border: 4px solid transparent;
-    border-top-color: #ececec;
+    border-top-color: @lightgrey-color;
     border-radius: 50%;
     animation: button-loading-spinner 1s ease infinite;
   }
