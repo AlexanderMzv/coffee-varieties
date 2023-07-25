@@ -10,3 +10,6 @@ export const CHIPS_COLORS = [
 ];
 
 export const CARD_REFETCH_INTERVAL = 1000 * 30;
+// 16ms between every render
+export const TIME_BETWEEN_RENDERS = 16;
+export const HORIZONTAL_SCROLL_MODIFIER = 35;
