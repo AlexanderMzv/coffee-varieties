@@ -8,3 +8,5 @@ export const CHIPS_COLORS = [
   "#E0DEF1",
   "#FAF0E1",
 ];
+
+export const CARD_REFETCH_INTERVAL = 1000 * 30;

@@ -1,10 +1,13 @@
 <script lang="ts">
-  import { onMount, setContext } from "svelte";
+  import { onDestroy, onMount, setContext } from "svelte";
   import type { CoffeeCard } from "../types";
   import { fetchCard } from "../api/utils/fetchCard";
   import CardsList from "../../lib/components/CardsList.svelte";
   import AddButton from "../../lib/components/AddButton.svelte";
-  import { UPDATE_IMAGE_LOADING_CONTEXT } from "../consts";
+  import {
+    CARD_REFETCH_INTERVAL,
+    UPDATE_IMAGE_LOADING_CONTEXT,
+  } from "../consts";
   import type { ImageLoadingContext } from "../types";
 
   let cardsData: CoffeeCard[] = [];
@@ -28,13 +31,30 @@
     cardsData = [...cardsData, cardData] as CoffeeCard[];
   };
 
-  const handleClick = () => {
-    void getCard();
-  };
+  let interval: number;
 
   onMount(() => {
     void getCard();
+    interval = setInterval(
+      () => void getCard(),
+      CARD_REFETCH_INTERVAL,
+    ) as number;
   });
+
+  onDestroy(() => {
+    clearInterval(interval);
+  });
+
+  const handleClick = () => {
+    clearInterval(interval);
+
+    void getCard();
+
+    interval = setInterval(
+      () => void getCard(),
+      CARD_REFETCH_INTERVAL,
+    ) as number;
+  };
 </script>
 
 <div class="list-screen">
