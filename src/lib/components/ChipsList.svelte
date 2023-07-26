@@ -41,6 +41,10 @@
 </div>
 
 <style lang="less">
+  @import (reference) "../../styles/global.less";
+
+  @scrollbar-height: 10px;
+
   .chips {
     display: flex;
     gap: 10px;
@@ -49,5 +53,33 @@
 
   .chips:last-child {
     padding-right: 20px;
+  }
+
+  @media (pointer: fine) {
+    .chips {
+      overflow-x: hidden;
+      margin-bottom: @scrollbar-height;
+    }
+
+    .chips:hover {
+      overflow-x: auto;
+      margin-bottom: 0;
+    }
+
+    .chips::-webkit-scrollbar {
+      height: @scrollbar-height;
+    }
+
+    .chips::-webkit-scrollbar-thumb {
+      background-color: @scroll-thumb;
+    }
+
+    .chips::-webkit-scrollbar-thumb:active {
+      background-color: @scroll-thumb-active;
+    }
+
+    .chips::-webkit-scrollbar-track {
+      background-color: @lightgrey-color;
+    }
   }
 </style>
