@@ -34,16 +34,16 @@
   };
 </script>
 
-<div class="chips" on:wheel={handleScrollChips}>
-  {#each notes as note, index}
-    <Chip {note} color={getChipColor({ colors: CHIPS_COLORS, index })} />
-  {/each}
+<div class="scroll-wrapper">
+  <div class="chips" on:wheel={handleScrollChips}>
+    {#each notes as note, index}
+      <Chip {note} color={getChipColor({ colors: CHIPS_COLORS, index })} />
+    {/each}
+  </div>
 </div>
 
 <style lang="less">
   @import (reference) "../../styles/global.less";
-
-  @scrollbar-height: 10px;
 
   .chips {
     display: flex;
@@ -56,18 +56,20 @@
   }
 
   @media (pointer: fine) {
+    .scroll-wrapper {
+      height: 63px;
+    }
+
     .chips {
       overflow-x: hidden;
-      margin-bottom: @scrollbar-height;
     }
 
     .chips:hover {
       overflow-x: auto;
-      margin-bottom: 0;
     }
 
     .chips::-webkit-scrollbar {
-      height: @scrollbar-height;
+      height: 10px;
     }
 
     .chips::-webkit-scrollbar-thumb {
